@@ -2,6 +2,10 @@
     session_start();
     include("Header.html");
     $name=$_SESSION['username'];
+    if(isset($_POST["logout"])){
+        session_destroy();
+        header("Location: ../index.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,8 +59,4 @@
 </html>
 <?php
     include("Footer.html");
-    if(isset($_POST["logout"])){
-        session_destroy();
-        header("Location: homepage.php");
-    }
 ?>

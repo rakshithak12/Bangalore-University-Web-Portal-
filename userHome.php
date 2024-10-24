@@ -4,7 +4,7 @@
     $name=$_SESSION['username'];
     if(isset($_POST["logout"])){
         session_destroy();
-        header("Location: ../homepage.php");
+        header("Location: ../index.php");
     }
 ?>
 <!DOCTYPE html>
