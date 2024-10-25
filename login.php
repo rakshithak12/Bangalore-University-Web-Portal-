@@ -30,7 +30,7 @@
 				<h1>Sign in</h1><br>
 				<input type="text" name="username" placeholder="Username" required>
 				<input type="password" name="password" placeholder="Password" required>
-				<p><a href="" id="fp" onclick="reveal()">Forgot Password</a> / <a href="" id="register">Register</a></p>
+				<p><a href="reset.php" id="fp">Forgot Password</a> / <a href="" id="register">Register</a></p>
 				<button type="submit">Sign In</button>
 			</form>
 		</div>

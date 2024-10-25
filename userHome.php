@@ -18,7 +18,7 @@
         var b=document.getElementById('home');
         b.href=" ";
         var a=document.getElementById('login');
-        a.innerHTML='<div class="profile-dropdown"><div onclick="toggle()" class="profile-dropdown-btn"><div class="profile-img"><?php echo addslashes($name); ?></div></div><ul class="profile-dropdown-list"><li class="profile-dropdown-list-item"><a href="#">Edit Profile</a></li><li class="profile-dropdown-list-item"><a href="#">Reset Password</a></li><li class="profile-dropdown-list-item"><form action="userHome.php" method="post"><button type="submit" value="logout" name="logout">Log out</button>  </form></li></ul></div>';
+        a.innerHTML='<div class="profile-dropdown"><div onclick="toggle()" class="profile-dropdown-btn"><div class="profile-img"><?php echo addslashes($name); ?></div></div><ul class="profile-dropdown-list"><li class="profile-dropdown-list-item"><a href="#">Edit Profile</a></li><li class="profile-dropdown-list-item"><a href="reset.php">Reset Password</a></li><li class="profile-dropdown-list-item"><form action="userHome.php" method="post"><button type="submit" value="logout" name="logout">Log out</button>  </form></li></ul></div>';
         a.onclick=" ";
         let profileDropdownList = document.querySelector(".profile-dropdown-list");
         let btn = document.querySelector(".profile-dropdown-btn");
