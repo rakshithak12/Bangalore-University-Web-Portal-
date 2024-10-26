@@ -1,5 +1,7 @@
 <?php
-    include("Header.html");
+    include("headfoot/Header.html");
+    session_start();
+    $_SESSION["login"] = false;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -45,5 +47,5 @@
 </body>
 </html>
 <?php
-    include("Footer.html");
+    include("headfoot/Footer.html");
 ?>

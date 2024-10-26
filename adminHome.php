@@ -2,6 +2,7 @@
     session_start();
     include("Header.html");
     $name=$_SESSION['username'];
+    $photo=$_SESSION['image_path'];
     if(isset($_POST["logout"])){
         session_destroy();
         header("Location: ../index.php");
@@ -18,8 +19,42 @@
         var b=document.getElementById('home');
         b.href=" ";
         var a=document.getElementById('login');
-        a.innerHTML="<?php echo addslashes($name); ?>"
+        a.innerHTML=`
+            <div class="profile-dropdown">
+                <div class="profile-dropdown-btn">
+                    <div class="profile-img">
+                        <img onclick="toggle()" src="<?php echo !empty($photo) && file_exists("login-register/uploads/{$photo}") ? "login-register/uploads/{$photo}" : 'login-register/uploads/default.jpeg'; ?>">
+                    </div>
+                </div>
+                <ul class="profile-dropdown-list">
+                    <li class="profile-dropdown-list-item">
+                        <a href="#">Edit Profile</a>
+                    </li>
+                    <li class="profile-dropdown-list-item">
+                        <a href="reset.php">Reset Password</a>
+                    </li>
+                    <li class="profile-dropdown-list-item">
+                        <form action="userHome.php" method="post">
+                            <button type="submit" value="logout" name="logout">Log out</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>`;
         a.onclick=" ";
+        a.style.border="none";
+        a.style.margin="";
+        a.style.padding="0";
+        a.style.width="40px";
+        let profileDropdownList = document.querySelector(".profile-dropdown-list");
+        let btn = document.querySelector(".profile-dropdown-btn");
+
+        let classList = profileDropdownList.classList;
+
+        const toggle = () => classList.toggle("active");
+
+        window.addEventListener("click", function (e) {
+            if (!btn.contains(e.target)) classList.remove("active");
+        });
     </script>
 </head>
 <body>

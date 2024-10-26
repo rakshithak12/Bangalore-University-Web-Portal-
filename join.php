@@ -1,5 +1,16 @@
 <?php
-    include("Header.html");
+    include("headfoot/Header.html");
+    session_start();
+    if($_SESSION['login']){
+        $name=$_SESSION['username'];
+        $photo=$_SESSION['image_path'];
+        $role=$_SESSION['role'];
+        $photo=$_SESSION['path'];
+        if(isset($_POST["logout"])){
+            session_destroy();
+            header("Location: index.php");
+        }
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -7,7 +18,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Join - Bangalore University</title>
-    <link rel="stylesheet" href="styles/join.css"> <!-- Link to your CSS file -->
+    <link rel="stylesheet" href="styles/join.css">
+    <script>
+        if(<?php echo $_SESSION['login']?>){
+            var b=document.getElementById('home');
+            b.href="<?php echo $_SESSION['role']?>Home.php";
+            var a=document.getElementById('login');
+            a.innerHTML=`
+                <div class="profile-dropdown">
+                    <div class="profile-dropdown-btn">
+                        <div class="profile-img">
+                            <img onclick="toggle()" src="<?php echo $photo ?>">
+                        </div>
+                    </div>
+                    <ul class="profile-dropdown-list">
+                        <li class="profile-dropdown-list-item">
+                            <a href="#">Edit Profile</a>
+                        </li>
+                        <li class="profile-dropdown-list-item">
+                            <a href="reset.php">Reset Password</a>
+                        </li>
+                        <li class="profile-dropdown-list-item">
+                            <form action="userHome.php" method="post">
+                                <button type="submit" value="logout" name="logout">Log out</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>`;
+            a.onclick=" ";
+            a.style.border="none";
+            a.style.margin="";
+            a.style.padding="0";
+            a.style.width="40px";
+        }
+        let profileDropdownList = document.querySelector(".profile-dropdown-list");
+            let btn = document.querySelector(".profile-dropdown-btn");
+
+            let classList = profileDropdownList.classList;
+
+            const toggle = () => classList.toggle("active");
+
+            window.addEventListener("click", function (e) {
+                if (!btn.contains(e.target)) classList.remove("active");
+            });
+    </script>
 </head>
 <body>
     <center><img src="../assets/log.jpg" alt=""></center>
@@ -85,5 +139,5 @@
 </body>
 </html>
 <?php
-    include("Footer.html");
+    include("headfoot/Footer.html");
 ?>

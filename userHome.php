@@ -1,10 +1,13 @@
 <?php
+    include("headfoot/Header.html");
     session_start();
-    include("Header.html");
     $name=$_SESSION['username'];
+    $photo=$_SESSION['image_path'];
+    $path=!empty($photo) && file_exists("login-register/uploads/{$photo}") ? "login-register/uploads/{$photo}" : 'login-register/uploads/default.jpeg';
+    $_SESSION['path']=$path;
     if(isset($_POST["logout"])){
         session_destroy();
-        header("Location: ../index.php");
+        header("Location: index.php");
     }
 ?>
 <!DOCTYPE html>
@@ -16,10 +19,34 @@
     <title>Bangalore University</title>
     <script>
         var b=document.getElementById('home');
-        b.href=" ";
+        b.href="<?php echo $_SESSION['role']?>Home.php";
         var a=document.getElementById('login');
-        a.innerHTML='<div class="profile-dropdown"><div onclick="toggle()" class="profile-dropdown-btn"><div class="profile-img"><?php echo addslashes($name); ?></div></div><ul class="profile-dropdown-list"><li class="profile-dropdown-list-item"><a href="#">Edit Profile</a></li><li class="profile-dropdown-list-item"><a href="reset.php">Reset Password</a></li><li class="profile-dropdown-list-item"><form action="userHome.php" method="post"><button type="submit" value="logout" name="logout">Log out</button>  </form></li></ul></div>';
         a.onclick=" ";
+        a.style.border="none";
+        a.style.margin="";
+        a.style.padding="0";
+        a.style.width="40px";
+        a.innerHTML=`
+            <div class="profile-dropdown">
+                <div class="profile-dropdown-btn">
+                    <div class="profile-img">
+                        <img onclick="toggle()" src="<?php echo $path?>">
+                    </div>
+                </div>
+                <ul class="profile-dropdown-list">
+                    <li class="profile-dropdown-list-item">
+                        <a href="#">Edit Profile</a>
+                    </li>
+                    <li class="profile-dropdown-list-item">
+                        <a href="reset.php">Reset Password</a>
+                    </li>
+                    <li class="profile-dropdown-list-item" id="bt">
+                        <form action="userHome.php" method="post">
+                            <button type="submit" value="logout" name="logout">Log out</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>`;
         let profileDropdownList = document.querySelector(".profile-dropdown-list");
         let btn = document.querySelector(".profile-dropdown-btn");
 
@@ -68,5 +95,5 @@
 </body>
 </html>
 <?php
-    include("Footer.html");
+    include("headfoot/Footer.html");
 ?>

@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         // Specify the directory where the file will be uploaded
         $uploadFileDir = './uploads/';
-        $dest_path = $uploadFileDir . $fileName;
+        $dest_path = $uploadFileDir . $base;
         if (move_uploaded_file($fileTmpPath, $dest_path)) {
             $uname = $base;
         } else {

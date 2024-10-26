@@ -15,20 +15,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $row = mysqli_fetch_assoc($result);
             // Verify password
             if (password_verify($password,$row['password'])) {
-                $_SESSION["username"] = $username;
+                $_SESSION["username"] = $row['username'];
+                $_SESSION["image_path"]=$row['photo'];
+                $_SESSION["login"]=true;
                 $role = $row['role'];
                 // Redirect based on user role
                 switch ($role) {
                     case 'user':
+                        $_SESSION['role']="user";
                         header("Location: ../userHome.php");
                         exit();
                     case 'admin':
+                        $_SESSION['role']="admin";
                         header("Location: ../adminHome.php");
                         exit();
                 }
             } else {
                 $hash=password_hash($password,PASSWORD_DEFAULT);
                 $_SESSION['message'] = "Invalid password";
+                $_SESSION["login"]=false;
                 header("Location: ../login.php");
                 exit();
             }
