@@ -6,11 +6,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/courses.css">
+    <link rel="stylesheet" href="styles/courses.css">
     <title>Courses - Bangalore University</title>
 </head>
 <body>
-<h1>Courses Offered <br> by <br><img src="..\assets\logo.png" alt=""></h1>
+<h1>Courses Offered <br> by <br><span style="color:#8F1717">Bangalore University</span><img src="..\assets\logo.png" alt=""></h1>
     <div class="join">
         <hr>
         <div class="eligible">
