@@ -303,12 +303,13 @@ text-align: left;
     width: 100%;
     background-color: #fff;
     font-size: 15px;
+    cursor: pointer;
     color: red;
     transition: background-color 0.2s ease-in, padding-left 0.2s;
 }
 .profile-dropdown-list-item form button:hover{
     background-color: rgb(236, 236, 236);
-    font-size: 0.9rem;
+    font-size: 1rem;
     font-weight: 500;    
 }
 
