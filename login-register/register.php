@@ -3,20 +3,35 @@ session_start();
 include("database/db.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $email = $_POST['email'];
-    $username =  $_POST['username'];
-    $password =  $_POST['password'];
-    
-    $hash = password_hash($password, PASSWORD_DEFAULT);
-    
-    // Check if the username already exists
-    $sql = "SELECT * FROM users WHERE username='$username'";
-    $result = mysqli_query($conn, $sql);
-
-    if (mysqli_num_rows($result) == 0) {
-        // Username is available, proceed with registration
-        $sql1 = "INSERT INTO users (email, username, password) VALUES ('$email', '$username', '$hash')";
+    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
+    $username =  filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
+    $password =  filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
+    $phone = $_POST['phone'];
+    $uname='';
+    function generateUniqueId() {
+        return 'ID-' . time() . '-' . rand(1000, 9999);
+    }
+    if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
+        $fileTmpPath = $_FILES['photo']['tmp_name'];
+        $fileName =$_FILES['photo']['name'];
+        $fileSize = $_FILES['photo']['size'];
+        $fileType = $_FILES['photo']['type'];
+        $base=generateUniqueId() .'_'. basename($fileName);
         
+        // Specify the directory where the file will be uploaded
+        $uploadFileDir = './uploads/';
+        $dest_path = $uploadFileDir . $fileName;
+        if (move_uploaded_file($fileTmpPath, $dest_path)) {
+            $uname = $base;
+        } else {
+            $uname = "default.jpeg";
+        }
+    }
+
+        $hash = password_hash($password, PASSWORD_DEFAULT);
+
+        $sql1 = "INSERT INTO users (email, username, password, phone, photo) VALUES ('$email', '$username', '$hash','$phone','$uname')";
+    
         try {
             mysqli_query($conn, $sql1);
             $_SESSION['message'] = "You are now registered, Please Login";
@@ -27,11 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: ../login.php");
             exit();
         }
-    } else {
-        $_SESSION['message'] = "Name is already taken";
-        header("Location: ../login.php");
-        exit();
-    }
+    
 }
 
 mysqli_close($conn);

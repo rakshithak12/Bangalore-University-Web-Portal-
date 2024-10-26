@@ -3,12 +3,12 @@ session_start();
 include("database/db.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (!empty($_POST["username"]) && !empty($_POST["password"])) {
-        $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
+    if (!empty($_POST["email"]) && !empty($_POST["password"])) {
+        $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
         $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
 
         // Query to find the user
-        $sql = "SELECT * FROM users WHERE username='$username'";
+        $sql = "SELECT * FROM users WHERE email='$email'";
         $result = mysqli_query($conn, $sql);
 
         if (mysqli_num_rows($result) > 0) {
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit();
             }
         } else {
-            $_SESSION['message'] = "No user found with that username";
+            $_SESSION['message'] = "No user found";
             header("Location: ../login.php");
             exit();
         }

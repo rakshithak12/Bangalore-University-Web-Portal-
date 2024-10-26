@@ -16,11 +16,14 @@
 	<div class="wrap"></div>
 	<div class="container" id="main">
 		<div class="register">
-			<form action="login-register/register.php" method="post">
+			<form action="login-register/register.php" method="post" enctype="multipart/form-data">
 				<h1>Create Account</h1><br>
 				<input type="email" name="email" id="" placeholder="Email Id" required>
 				<input type="text" name="username" placeholder="Username" required>
 				<input type="password" name="password" placeholder="Password" required>
+				<input type="number" name="phone" placeholder="Phone" min="1111111111" max="9999999999" value="" required> 
+				<input type="file" name="photo" accept="image/jpg,image/jpeg,image/png" id="pp">
+				<label for="pp" class="file-label default">Select an image</label>
 				<p>Have account ? <a href="" id="signIn">Sign in</a></p>
 				<button type="submit" value="register">Register</button>
 			</form>
@@ -28,7 +31,7 @@
 		<div class="sign-in">
 			<form action="login-register/loginver.php" method="post">
 				<h1>Sign in</h1><br>
-				<input type="text" name="username" placeholder="Username" required>
+				<input type="text" name="email" placeholder="Email Id" required>
 				<input type="password" name="password" placeholder="Password" required>
 				<p><a href="reset.php" id="fp">Forgot Password</a> / <a href="" id="register">Register</a></p>
 				<button type="submit">Sign In</button>
@@ -52,6 +55,22 @@
 		const signUpButton = document.getElementById('register');
 		const signInButton = document.getElementById('signIn');
 		const main = document.getElementById('main');
+
+		document.getElementById('pp').addEventListener('change', function() {
+			const label = document.querySelector('.file-label');
+
+			if (this.files.length > 0) {
+				this.style.border="4px solid brown";
+				label.classList.remove('default');
+				label.style.border="2px solid #8F1717";
+				label.classList.add('uploaded');
+				label.innerHTML="File Uploded";
+			} else {
+				label.classList.remove('uploaded');
+				label.classList.add('default');
+			}
+    	});
+
 
 		if ("<?php echo addslashes($message); ?>" !== "") {
 			alert("<?php echo addslashes($message); ?>");

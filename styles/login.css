@@ -26,10 +26,10 @@ body{
 .container{
 	z-index: 1;
 	position: relative;
-    margin-top: 100px;
+    margin-top: 40px;
 	width: 768px;
 	max-width: 100%;
-	min-height: 480px;
+	min-height: 600px;
 	background: #fff;
 	border-radius: 10px;
 	overflow: hidden;
@@ -63,6 +63,7 @@ form{
 	text-align: center;
 }
 h1{
+	padding-bottom: 15px;
 	font-weight: bold;
 	margin: 0;
 }
@@ -79,11 +80,45 @@ p{
 input{
 	background: #eee;
 	padding: 12px 15px;
-	margin: 8px 15px;
+	margin: 10px 15px;
 	width: 100%;
-	border-radius: 5px;
+	box-shadow: 3px 8px 10px rgba(0,0,0,0.25);
+	border-radius: 50px;
 	border: none;
 	outline: none;
+}
+input[type="number"]:valid {
+    border: 2px solid #8F1717; /* Border when a valid number is entered */
+}
+input:focus{
+	border: 2px solid #8F1717;
+}
+input:valid{
+	border: 2px solid #8F1717;
+}
+input[type="file"]{
+	display: none;
+}
+.file-label {
+	display: inline-block;
+	padding: 10px 15px;
+	border: 2px solid none;
+	border-radius: 50px;
+	cursor: pointer;
+	width: 100%;
+	color: #757575;
+	text-align: left;
+	box-shadow: 3px 8px 10px rgba(0,0,0,0.25);
+	background-color: #EEEEEE;
+	margin-top: 10px;
+	transition: border-color 0.3s; /* Smooth transition */
+}
+.file-label:hover{
+	border: 2px solid #8F1717;
+}
+/* Default border color */
+.file-label.default {
+	border-color: none;
 }
 #fp{
     color: black;
