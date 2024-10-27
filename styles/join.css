@@ -10,6 +10,9 @@ h1{
     font-size: 60px;
     text-align: center;
 }
+.main_image{
+    margin-top: 50px;
+}
 .join div{
     padding-top: 75px;
     width: 90%;
