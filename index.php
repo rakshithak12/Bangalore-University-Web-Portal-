@@ -1,51 +1,142 @@
 <?php
-    include("headfoot/Header.html");
-    session_start();
+session_start();
+if(isset($_SESSION['login']) && $_SESSION["login"] === true) {
+    $name = $_SESSION['username'];
+    $photo = $_SESSION['image_path'];
+    $path = !empty($photo) && file_exists("login-register/uploads/{$photo}") ? "login-register/uploads/{$photo}" : 'login-register/uploads/default.jpeg';
+    $_SESSION['path'] = $path;
+} else {
     $_SESSION["login"] = false;
+}
+
+if (isset($_GET["logout"])) {
+    session_destroy();
+    header("Location: index.php");
+    exit();
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles/style.css">
-    <title>Bangalore University</title>
+    <link rel="stylesheet" href="styles/headfoot.css">
+    <link rel="icon" href="assets/kn_seal.png" type="image/x-icon">
+    <script>
+        function loadPage(page) {
+            const contentDiv = document.getElementById('content');
+            fetch(page + '.php')
+                .then(response => {
+                    if (!response.ok) throw new Error('Page not found');
+                    return response.text();
+                })
+                .then(html => {
+                    contentDiv.innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Error loading page:', error);
+                    window.location.href = 'login.php'; // Redirect if page not found
+                });
+        }
+    </script>
 </head>
 <body>
-    <div class="section1">
-        <img src="assets/uni1.jpg" alt="Bangalore University" class="university_pic">
-        <div class="wrap">
-            <h1>WELCOME TO BANGALORE UNIVERSITY</h1>
-            <button class="know_more" onclick="window.location.href='//en.wikipedia.org/wiki/Bangalore_University';">Know More</button>
-        </div>
+<header>
+    <span id="main">
+        <img src="assets/education (1).png" alt="Bangalore University" class="logo">
+        <h2>Bangalore University</h2>
+    </span>
+    <div class="head">
+        <button onclick="loadPage('Home')">Home</button>
+        <button onclick="loadPage('about')">About</button>
+        <button onclick="loadPage('join')">Join</button>
+        <button onclick="loadPage('courses')">Courses</button>
+        <button onclick="loadPage('contact')">Contact</button>
+        <button onclick="window.location.href='login.php'" class="login">Login</button>
     </div>
-    <div class="section2">
-        <div class="wrap2">
-            <h1>A Societal Mission</h1>
-            <p>Bangalore University was founded almost 60 years ago on a bedrock of societal purpose. Our mission is to contribute to the world by educating students for lives of leadership and contribution with integrity, advancing fundamental knowledge and cultivating creativity, leading in pioneering research for effective clinical therapies, and accelerating solutions and amplifying their impact.</p>
-        </div>
-    </div>
-    <div class="section3">
-        <div class="wrap3">
-            <img src="assets/VC.jpg" alt="">
-            <div class="text">
-                <h1>VICE CHANCELLOR</h1>
-                <h2>PROF. DR. JAYAKARA SHETTY M</h2>
-                <p>Dr,Jayakara Shetty was born on 12th February, 1969, BDS, MDS (Prosthodontics), D.Implant (France), FPFA Dean, Faculty of Dentistry, Rajiv Gandhi University of Health Sciences Bengaluru.
-                    He has served as a professor for more than 10 years and has also rendered his service as a Vice-Principal and Principal for 11 years at AECS Maaruti College of Dental Sciences and Research Centre, Bengaluru.
-                   <br> He has been closely associated with Rajiv Gandhi University of Health Sciences (RGUHS) since 2006 & had the unique privilege of working in all “Authorities of the Rajiv Gandhi University of Health Sciences” as Dean Faculty of Dentistry, Chairman Board of Studies Under Graduate, and as part of the senate, the syndicate, the academic Council, the finance committee and the Faculty of Dentistry during the last decade.
-                </p>
+</header>
+<div id="content">
+    <?php
+    // Initial page load, can keep it simple for now
+    include('Home.php');
+    ?>
+</div>
+<script>
+    if (<?php echo $_SESSION["login"] ? 'true' : 'false'; ?>) {
+        const path = "<?php echo $path; ?>";
+        const btn = document.querySelector(".login");
+        btn.style.display = "none";
+
+        const log = document.querySelector('.head');
+        log.innerHTML += `
+            <div class="profile-dropdown" id="bt">
+                <div class="profile-dropdown-btn">
+                    <div class="profile-img">
+                        <img onclick="toggle()" src="${path}" style="cursor:pointer;">
+                    </div>
+                </div>
+                <ul class="profile-dropdown-list" id="pdl">
+                    <li class="profile-dropdown-list-item">
+                        <a href="#">Edit Profile</a>
+                    </li>
+                    <li class="profile-dropdown-list-item">
+                        <a href="reset.php">Reset Password</a>
+                    </li>
+                    <li class="profile-dropdown-list-item">
+                        <a href="index.php?logout=1" class="logout">Log out</a>
+                    </li>
+                </ul>
+            </div>`;
+    }
+
+    const profileDropdownList = document.querySelector("#pdl");
+    const dropdownBtn = document.querySelector(".profile-dropdown-btn");
+
+    const toggle = () => profileDropdownList.classList.toggle("active");
+
+    window.addEventListener("click", function (e) {
+        if (!dropdownBtn.contains(e.target)) {
+            profileDropdownList.classList.remove("active");
+        }
+    });
+
+    function confirmLogout() {
+        return confirm('Are you sure you want to log out?');
+    }
+</script>
+<footer>
+    <div class="foot">
+        <div class="name">
+            <h3>Bangalore <span class="Uni">University</span></h3>
+            <div class="item">
+                <div class="itemw">
+                    <div class="row1">
+                        <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>">Home</a>
+                        <a href="#">Terms of Use</a>
+                    </div>
+                    <div class="row2">
+                        <a href="https://www.google.com/maps/dir//Bengaluru+University" target="_blank">Directions</a>
+                        <a href="#">Privacy</a>
+                    </div>
+                    <div class="row3">
+                        <a href="#">Search</a>
+                        <a href="#">Copyright</a>
+                    </div>
+                    <div class="row4">
+                        <a href="#">Trademarks</a>
+                        <a href="#">Accessibility</a>
+                    </div>
+                </div>
+            </div>
+            <div class="contact">
+                <h4>Contact Us</h4>
+                <div class="cont">
+                    <div class="r1"><img src="assets/mail.png" alt="mail"><a href="mailto:bangaloreuniversity.edu@gmail.com">bangaloreuniversity.edu@gmail.com</a></div>
+                    <div class="r2"><img src="assets/call.png" alt="call"><a href="#">1800 3996 4123</a></div>
+                    <div class="r3"><img src="assets/pin.png" alt=""><a href="#">Bangalore</a></div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="section5">
-        <div class="map">
-            <h1>Our Location</h1>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.334884944982!2d77.49948677447271!3d12.950410015343696!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae3ebbdccfffff%3A0xad11c0e4bdbffcc9!2sBengaluru%20University!5e0!3m2!1sen!2sin!4v1729534069289!5m2!1sen!2sin" width="100%" height="550px" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-    </div>
+    <p>&copy; Bangalore University, Govt of Karnataka @ 2024</p>
+</footer>
 </body>
 </html>
-<?php
-    include("headfoot/Footer.html");
-?>
