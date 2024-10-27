@@ -79,7 +79,7 @@ if (isset($_GET["logout"])) {
                         <a href="#">Edit Profile</a>
                     </li>
                     <li class="profile-dropdown-list-item">
-                        <a href="reset.php">Reset Password</a>
+                        <a href="reset.html">Reset Password</a>
                     </li>
                     <li class="profile-dropdown-list-item">
                         <a href="index.php?logout=1" class="logout">Log out</a>

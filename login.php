@@ -33,7 +33,7 @@
 				<h1>Sign in</h1><br>
 				<input type="text" name="email" placeholder="Email Id" required>
 				<input type="password" name="password" placeholder="Password" required>
-				<p><a href="reset.php" id="fp">Forgot Password</a> / <a href="" id="register">Register</a></p>
+				<p><a href="reset.html" id="fp">Forgot Password</a> / <a href="" id="register">Register</a></p>
 				<button type="submit">Sign In</button>
 			</form>
 		</div>
