@@ -18,6 +18,8 @@ if (isset($_GET["logout"])) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/headfoot.css">
     <link rel="icon" href="assets/kn_seal.png" type="image/x-icon">
     <script>
