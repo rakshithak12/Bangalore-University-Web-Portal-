@@ -33,7 +33,7 @@ if (isset($_GET["logout"])) {
                 })
                 .catch(error => {
                     console.error('Error loading page:', error);
-                    window.location.href = 'login.php'; // Redirect if page not found
+                    window.location.href = 'login.php';
                 });
         }
     </script>
@@ -55,7 +55,6 @@ if (isset($_GET["logout"])) {
 </header>
 <div id="content">
     <?php
-    // Initial page load, can keep it simple for now
     include('Home.php');
     ?>
 </div>
