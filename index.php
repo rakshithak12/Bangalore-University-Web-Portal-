@@ -76,13 +76,13 @@ if (isset($_GET["logout"])) {
                 </div>
                 <ul class="profile-dropdown-list" id="pdl">
                     <li class="profile-dropdown-list-item">
-                        <a href="#">Edit Profile</a>
+                        <a href="#">Profile</a>
                     </li>
                     <li class="profile-dropdown-list-item">
                         <a href="reset.html">Reset Password</a>
                     </li>
                     <li class="profile-dropdown-list-item">
-                        <a href="index.php?logout=1" class="logout">Log out</a>
+                        <a href="" class="logout" onclick='confirmLogout(this)'>Log out</a>
                     </li>
                 </ul>
             </div>`;
@@ -99,8 +99,11 @@ if (isset($_GET["logout"])) {
         }
     });
 
-    function confirmLogout() {
-        return confirm('Are you sure you want to log out?');
+    function confirmLogout(a) {
+        const val=confirm('Are you sure you want to log out?');
+        if(val){
+            a.href="index.php?logout=1";
+        }
     }
 </script>
 <footer>
@@ -118,7 +121,7 @@ if (isset($_GET["logout"])) {
                         <a href="#">Privacy</a>
                     </div>
                     <div class="row3">
-                        <a href="#">Search</a>
+                        <a href="https://www.google.co.in/search?q=bangalore+university&sca_esv=3ba6c21c49c51756&source=hp&ei=iwkfZ7W7CuCR4-EPqqi28As&iflsig=AL9hbdgAAAAAZx8Xm97DyrWnQuyQ5IPVhA80HzFCF27Q&gs_ssp=eJzj4tTP1TdINzRJrzBg9BJJSsxLT8zJL0pVKM3LLEstKs4sqQQArrcLdg&oq=bangalore+universot&gs_lp=Egdnd3Mtd2l6IhNiYW5nYWxvcmUgdW5pdmVyc290KgIIADIKEC4YgAQYsQMYCjIHEAAYgAQYCjIHEAAYgAQYCjIQEC4YgAQYxwEYChiOBRivATIHEAAYgAQYCjIHEAAYgAQYCjIKEAAYgAQYsQMYCjIHEAAYgAQYCjIHEAAYgAQYCjIHEAAYgAQYCkjhJ1D8BFirHHABeACQAQCYAasCoAGdGaoBBjAuMTcuMrgBA8gBAPgBAZgCFKAC4xyoAgrCAhAQABgDGOUCGOoCGIwDGI8BwgITEC4YAxjlAhjHAxjqAhiMAxiPAcICEhAAGAMY5QIY6gIYChiMAxiPAcICEBAuGAMY5QIY6gIYjAMYjwHCAggQABiABBixA8ICCxAAGIAEGLEDGIMBwgIOEC4YgAQYsQMYgwEYigXCAg4QABiABBixAxiDARiKBcICDhAuGIAEGLEDGNEDGMcBwgIFEAAYgATCAgsQLhiABBixAxiDAcICCBAuGIAEGLEDwgIFEC4YgATCAg4QLhiABBjHARiOBRivAcICERAuGIAEGLEDGMcBGI4FGK8BwgIQEAAYgAQYsQMYgwEYRhiAApgDLJIHCDEuMTMuNS4xoAfW9wE&sclient=gws-wiz" target="_blank">Search</a>
                         <a href="#">Copyright</a>
                     </div>
                     <div class="row4">

@@ -78,17 +78,17 @@ p{
 	margin: 15px 0 20px;
 }
 input{
-	background: #eee;
+	background: #fff;
 	padding: 12px 15px;
 	margin: 10px 15px;
 	width: 100%;
-	box-shadow: 3px 8px 10px rgba(0,0,0,0.25);
+	box-shadow: 0px 0px 20px rgba(0,0,0,0.25);
 	border-radius: 50px;
 	border: none;
 	outline: none;
 }
 input[type="number"]:valid {
-    border: 2px solid #8F1717; /* Border when a valid number is entered */
+    border: 2px solid #8F1717;
 }
 input:focus{
 	border: 2px solid #8F1717;
@@ -111,12 +111,12 @@ input[type="file"]{
 	box-shadow: 3px 8px 10px rgba(0,0,0,0.25);
 	background-color: #EEEEEE;
 	margin-top: 10px;
-	transition: border-color 0.3s; /* Smooth transition */
+	transition: border-color 0.3s;
 }
 .file-label:hover{
 	border: 2px solid #8F1717;
 }
-/* Default border color */
+
 .file-label.default {
 	border-color: none;
 }
@@ -227,4 +227,11 @@ button:active{
 }
 .container.right-panel-active .overlay-right{
 	transform: translateX(20%);
+}
+.profile-dropdown-list-item:last-child:hover {
+    background-color: red;
+}
+
+.profile-dropdown-list-item:last-child:hover a {
+    color: white;
 }

@@ -5,7 +5,7 @@ include("database/db.php");
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email=filter_input(INPUT_POST,"email", FILTER_SANITIZE_EMAIL);
         $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
-        // Query to find the user
+        
         $sql = "SELECT * FROM users WHERE email=?";
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("s", $email);

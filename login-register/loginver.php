@@ -7,7 +7,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
         $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
 
-        // Query to find the user
         $sql = "SELECT * FROM users WHERE email='$email'";
         $result = mysqli_query($conn, $sql);
 
@@ -18,10 +17,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["image_path"]=$row['photo'];
                 $_SESSION["login"]=true;
                 $role = $row['role'];
-                header("Location: ../index.php");
-                exit();
+                if($role=="user"){
+                    header("Location: ../index.php");
+                    exit();
+                }
+                else{
+                    header("Location: ../admin/adminHome.php");
+                    exit();
+                }
             } else {
-                $hash=password_hash($password,PASSWORD_DEFAULT);
                 $_SESSION['message'] = "Invalid password";
                 $_SESSION["login"]=false;
                 header("Location: ../login.php");

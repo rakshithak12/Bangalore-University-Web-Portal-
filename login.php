@@ -20,8 +20,9 @@
 				<h1>Create Account</h1><br>
 				<input type="email" name="email" id="" placeholder="Email Id" required>
 				<input type="text" name="username" placeholder="Username" required>
-				<input type="password" name="password" placeholder="Password" required>
 				<input type="number" name="phone" placeholder="Phone" min="1111111111" max="9999999999" value="" required> 
+				<input type="password" name="password1" placeholder="Enter Password" required>
+				<input type="password" name="password2" placeholder="Confirm Password" required>
 				<input type="file" name="photo" accept="image/jpg,image/jpeg,image/png" id="pp">
 				<label for="pp" class="file-label default">Select an image</label>
 				<p>Have account ? <a href="" id="signIn">Sign in</a></p>
@@ -74,7 +75,7 @@
 
 		if ("<?php echo addslashes($message); ?>" !== "") {
 			alert("<?php echo addslashes($message); ?>");
-			if ("<?php echo addslashes($message); ?>"=="Name is already taken"){
+			if ("<?php echo addslashes($message); ?>"=="Email is already taken"){
 				main.classList.add("right-panel-active");
 			}
 		}

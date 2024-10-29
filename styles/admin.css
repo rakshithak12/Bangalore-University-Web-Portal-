@@ -1,10 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 *{
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
+
 header{
     position: sticky;
     top: 0;
@@ -12,15 +14,17 @@ header{
     display:grid;
     padding-bottom: 3px;
     z-index: 2;
-    grid-template-columns: 2.5fr 2fr;
+    grid-template-columns: 4fr 2fr;
     border-bottom:1px solid #1b1b1b;
 }
+
 .head{
     display: flex;
     justify-content: space-around;
     align-items: center;
     margin-bottom: -3px;
 }
+
 .head button:not(.login){
     justify-content: space-around;
     height: max-content;
@@ -29,11 +33,13 @@ header{
     font-size: 15px;
     font-weight: 600;
     cursor: pointer;
-}  
+}
+
 .head button:hover:not(.login,.logout){
     scale: 1.05;
     text-decoration:5px underline #8F1717 ;
 }
+
 .login{
     background-color: white;
     border: 2px solid #8F1717;
@@ -44,109 +50,30 @@ header{
     font-weight: 600;
     cursor: pointer;
 }
+
 #main{
     display: flex;
     align-items: center;
     margin-left: 20px;
 }
+
 #main h2{
     margin-left: 10px;
     margin-top: 5px;
     color: #8F1717;
 }
+
 .logo{
     width: 40px;
     height: 35px;
     margin-top: 5px;
 }
+
 .mode{
     margin-top: -1px;
     width: 20px;
     height: 20px;
     border: none;
-}
-footer{
-    
-    width: 100%;
-    background-color: #282828;
-}
-footer .foot{
-    display: flexbox;
-    justify-content: center;
-    align-items: center;
-    padding-bottom: 20px;
-}
-.name{
-    display: grid;
-    grid-template-columns: 2fr 3.5fr 2fr;
-}
-div .row1,.row2,.row3,.row4{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    padding-top: 35px;
-}
-.foot h3{
-    font-family: serif;
-    color: white;
-    width: 70px;
-    font-size: 35px;
-    font-weight: bold;
-    text-align: center;
-    padding-top:20px;
-    margin: 25px;
-    margin-left: 70px;
-}
-.foot .item{
-    display: flex;
-    flex-direction:column;
-    gap: 15px;
-}
-.foot .itemw{
-    display: flex;
-    flex-direction: row;
-    gap: 75px;
-    margin-top: 35px;
-}
-.item :where(a){
-    color: white;
-    font-size: 15px;
-    font-weight: 200;
-    text-decoration: none;
-}
-footer p{
-    color: white;
-    text-align: center;
-    background-color: #1b1b1b;
-    padding: 8px;
-}
-.name span{
-    font-family: serif;
-    font-size: 25px;
-    font-weight: 300;
-    margin-left: 27px;
-}
-.contact h4{
-    padding-top: 25px;
-    text-decoration: underline;
-    color: white;
-    margin-bottom: 15px;
-}
-.contact img{
-    width: 20px;
-    height: 20px;   
-    margin-bottom: -5px;
-}
-.cont{
-    padding-top: 5px;
-    display: flex;
-    gap: 15px;
-    flex-direction: column;
-}
-.cont a{
-    text-decoration: none;
-    color: white;
-    margin-left: 10px;
 }
 
 .profile-dropdown {
@@ -163,11 +90,20 @@ footer p{
      border-radius: 50%;
  }
  
+ .profile-dropdown-btn{
+    display: flex;
+    gap: 10px;
+ }
+
+ .second {
+    padding-top: 5px;
+ }
+
  .profile-dropdown-list {
     position: absolute;
     top: 38px;
     width: max-content;
-    right:-30px;
+    right:-10px;
     background-color: #fff;
     border-radius: 5px 0px 0px 5px;
     max-height:0;
@@ -202,8 +138,15 @@ footer p{
     font-weight: 500;
     color: red;
 }
-.profile-dropdown-list-item:hover {
+.profile-dropdown-list-item:hover{
     background-color: rgb(236, 236, 236);
     font-size: 0.9rem;
     font-weight: 500;
+}
+.profile-dropdown-list-item:last-child:hover {
+    background-color: red;
+}
+
+.profile-dropdown-list-item:last-child:hover a {
+    color: white;
 }

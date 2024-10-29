@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles/join.css">
 </head>
 <body>
-    <center><img src="../assets/log.jpg" alt="bangalore university" class="main_image"></center>
+    <center><img src="assets/log.jpg" alt="bangalore university" class="main_image"></center>
     <h1>Admission Information</h1>
     <div class="join">
         <hr>
