@@ -140,7 +140,7 @@ if (isset($_GET["logout"])) {
             </div>
         </div>
     </div>
-    <p>&copy; Bangalore University, Govt of Karnataka @ 2024</p>
+    <p>&copy; <?php echo date('Y')?> Bangalore University, All rights reserved</p>
 </footer>
 </body>
 </html>

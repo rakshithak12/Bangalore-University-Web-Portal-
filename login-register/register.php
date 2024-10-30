@@ -27,11 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         $uploadFileDir = './uploads/';
         $dest_path = $uploadFileDir . $base;
-        if (move_uploaded_file($fileTmpPath, $dest_path)) {
-            $uname = $base;
-        } else {
-            $uname = "default.jpeg";
-        }
+        $uname = move_uploaded_file($fileTmpPath, $dest_path)?$base:$uname = "default.jpeg";;
     }
     else{
         $uname = "default.jpeg";
