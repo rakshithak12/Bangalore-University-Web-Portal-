@@ -6,6 +6,7 @@
     $sql = "SELECT * FROM users where user_id=$id";
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
+    $_SESSION['img_id']=$row['photo'];
 ?>
 <html>
 <head>
@@ -45,7 +46,7 @@
     <br><br>
     <center>
         <h1>EDIT</h1>
-        <form action="../login-register/update.php" method="post">
+        <form action="../login-register/update.php" method="post" enctype="multipart/form-data">
             <table border="1">
             <td><label>Email:</label></td>
             <td><input type="text" name="email" value="<?php echo $row['email']?>"></td>

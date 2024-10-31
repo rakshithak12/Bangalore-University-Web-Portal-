@@ -7,14 +7,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username =  filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
     $password1 =  filter_input(INPUT_POST, "password1", FILTER_SANITIZE_SPECIAL_CHARS);
     $password2 =  filter_input(INPUT_POST, "password2", FILTER_SANITIZE_SPECIAL_CHARS);
-    $phone = $_POST['phone'];
+    $phone = filter_input(INPUT_POST, 'phone', FILTER_SANITIZE_STRING);
     $uname='';
-    if($_GET['value']==1){
-        $path="Location: ../admin/adminHome.php";
-    }
-    else{
-        $path="Location: ../login.php";
-    }
+
+    $path=$_GET['value']==1?"Location: ../admin/adminHome.php":"Location: ../login.php";
+    
     function generateUniqueId() {
         return 'ID-' . time() . '-' . rand(1000, 9999);
     }
@@ -24,12 +21,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $fileSize = $_FILES['photo']['size'];
         $fileType = $_FILES['photo']['type'];
         $base=generateUniqueId() .'_'. basename($fileName);
-        
-        $uploadFileDir = './uploads/';
-        $dest_path = $uploadFileDir . $base;
-        $uname = move_uploaded_file($fileTmpPath, $dest_path)?$base:$uname = "default.jpeg";;
+        $dest_path = './uploads/' . $base;
+        $uname = move_uploaded_file($fileTmpPath, $dest_path)?$base:"default.jpeg";
+        $_SESSION['message']="inside the function\n";
     }
     else{
+        $_SESSION['message']="outside the function\n";
         $uname = "default.jpeg";
     }
     if($password1==$password2){
@@ -38,11 +35,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
         try {
             mysqli_query($conn, $sql1);
-            $_SESSION['message'] = "You are now registered, Please Login";
+            $_SESSION['message'].= "You are now registered, Please Login";
             header($path);
             exit();
         } catch (mysqli_sql_exception $e) {
-            $_SESSION['message'] = "Error: " . $e->getMessage();
+            $_SESSION['message'] .= "Error: " . $e->getMessage();
             header($path);
             exit();
         }
