@@ -23,10 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $base=generateUniqueId() .'_'. basename($fileName);
         $dest_path = './uploads/' . $base;
         $uname = move_uploaded_file($fileTmpPath, $dest_path)?$base:"default.jpeg";
-        $_SESSION['message']="inside the function\n";
     }
     else{
-        $_SESSION['message']="outside the function\n";
         $uname = "default.jpeg";
     }
     if($password1==$password2){
@@ -35,11 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
         try {
             mysqli_query($conn, $sql1);
-            $_SESSION['message'].= "You are now registered, Please Login";
+            $_SESSION['message'] = "You are now registered, Please Login";
             header($path);
             exit();
         } catch (mysqli_sql_exception $e) {
-            $_SESSION['message'] .= "Error: " . $e->getMessage();
+            $_SESSION['message'] = "Error: " . $e->getMessage();
             header($path);
             exit();
         }
