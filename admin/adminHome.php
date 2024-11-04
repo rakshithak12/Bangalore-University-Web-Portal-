@@ -71,17 +71,17 @@ if (isset($_GET["logout"])) {
         const log = document.querySelector('.head');
         log.innerHTML += `
             <div class="profile-dropdown" id="bt">
-                <div class="profile-dropdown-btn">
+                <div class="profile-dropdown-btn" onclick="toggle()">
                     <div class="profile-img">
-                        <img onclick="toggle()" src="${path}" style="cursor:pointer;">
+                        <img src="${path}" style="cursor:pointer;">
                     </div>
-                    <div class="second">
+                    <div class="second" style="cursor:pointer;">
                         <h4>Admin</h4>
                     </div>
                 </div>
                 <ul class="profile-dropdown-list" id="pdl">
                     <li class="profile-dropdown-list-item">
-                        <a href="#">Profile</a>
+                        <a onclick="loadPage('profile')" style="cursor:pointer;">Profile</a>
                     </li>
                     <li class="profile-dropdown-list-item">
                         <a href="reset.html">Reset Password</a>

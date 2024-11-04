@@ -71,12 +71,12 @@ if (isset($_GET["logout"])) {
             <div class="profile-dropdown" id="bt">
                 <div class="profile-dropdown-btn">
                     <div class="profile-img">
-                        <img onclick="toggle()" src="${path}" style="cursor:pointer;">
+                        <img onclick="toggle()" src="${path}" style="cursor:pointer; object-fit:cover;">
                     </div>
                 </div>
                 <ul class="profile-dropdown-list" id="pdl">
                     <li class="profile-dropdown-list-item">
-                        <a href="#">Profile</a>
+                        <a onclick="loadPage('profile')" style="cursor:pointer;">Profile</a>
                     </li>
                     <li class="profile-dropdown-list-item">
                         <a href="reset.html">Reset Password</a>
