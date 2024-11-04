@@ -51,14 +51,15 @@ if (isset($_GET["logout"])) {
         <h2>Bangalore University Database</h2>
     </span>
     <div class="head">
-        <button onclick="loadPage('cards')">Home</button>
-        <button onclick="loadPage('insert')">Add User</button>
+        <button onclick="loadPage('home')">Home</button>
+        <!--<button onclick="loadPage('insert')">Add User</button>-->
+        <button onclick="loadPage('cards')">Registered Users</button>
         <button onclick="window.location.href='login.php'" class="login">Login</button>
     </div>
 </header>
 <div id="content">
     <?php
-    include('cards.php');
+    include('home.php');
     ?>
 </div>
 <script>
