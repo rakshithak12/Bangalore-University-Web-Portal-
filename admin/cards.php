@@ -12,7 +12,7 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="..\styles\cards.css">
+    <link rel="stylesheet" href="../styles/cards.css">
     <title>Document</title>
 </head>
 <body>
@@ -39,10 +39,7 @@ $result = $conn->query($sql);
                             echo "<td>" . $row['phone'] . "</td>";
                             echo "<td><center><img src='../login-register/uploads/".$row['photo']."' alt='profile_img' style='object-fit: cover;'></center></td>";
                             echo "<td class='buttons'>
-                                <form action='edit.php' method='post'>
-                                    <input type='hidden' name='user_id' value='".$row['user_id']."'>
-                                    <button type='submit' id='edit' value='edit'>EDIT</button>
-                                </form>
+                                
                                 <form action='' method='post'>
                                     <input type='hidden' name='user_id' value='".$row['user_id']."'>
                                     <button type='submit' id='delete' onclick='confirmDelete(this)' value='delete'>DELETE</button>

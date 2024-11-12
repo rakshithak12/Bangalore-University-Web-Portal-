@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["login"]=true;
                 $role = $row['role'];
                 if($role=="user"){
-                    header("Location: ../index.php");
+                    header("Location: ../userhome.php");
                     exit();
                 }
                 else{

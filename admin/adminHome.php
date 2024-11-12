@@ -54,7 +54,7 @@ if (isset($_GET["logout"])) {
         <button onclick="loadPage('home')">Home</button>
         <!--<button onclick="loadPage('insert')">Add User</button>-->
         <button onclick="loadPage('cards')">Registered Users</button>
-        <button onclick="window.location.href='login.php'" class="login">Login</button>
+        <button onclick="confirmLogout(this)" class="login">Logout</button>
     </div>
 </header>
 <div id="content">
@@ -63,61 +63,58 @@ if (isset($_GET["logout"])) {
     ?>
 </div>
 <script>
-    if (<?php echo $_SESSION["login"] ? 'true' : 'false'; ?>) {
-        const path = "<?php echo $path; ?>";
-        const btn = document.querySelector(".login");
-        btn.style.display = "none";
+    // if (<?php echo $_SESSION["login"] ? 'true' : 'false'; ?>) {
+    //     const path = "<?php echo $path; ?>";
+        // const btn = document.querySelector(".login");
+        // btn.style.display = "none";
 
-        const log = document.querySelector('.head');
-        log.innerHTML += `
-            <div class="profile-dropdown" id="bt">
-                <div class="profile-dropdown-btn" onclick="toggle()">
-                    <div class="profile-img">
-                        <img src="${path}" style="cursor:pointer;">
-                    </div>
-                    <div class="second" style="cursor:pointer;">
-                        <h4>Admin</h4>
-                    </div>
-                </div>
-                <ul class="profile-dropdown-list" id="pdl">
-                    <li class="profile-dropdown-list-item">
-                        <a onclick="loadPage('profile')" style="cursor:pointer;">Profile</a>
-                    </li>
-                    <li class="profile-dropdown-list-item">
-                        <a href="reset.html">Reset Password</a>
-                    </li>
-                    <li class="profile-dropdown-list-item">
-                        <a href="" class="logout" onclick='confirmLogout(this)'>Log out</a>
-                    </li>
-                </ul>
-            </div>`;
-    }
+    //     const log = document.querySelector('.head');
+    //     log.innerHTML += `
+    //         <div class="profile-dropdown" id="bt">
+    //             <div class="profile-dropdown-btn" onclick="toggle()">
+    //                 <div class="profile-img">
+    //                     <img src="${path}" style="cursor:pointer;">
+    //                 </div>
+    //                 <div class="second" style="cursor:pointer;">
+    //                     <h4>Admin</h4>
+    //                 </div>
+    //             </div>
+    //             <ul class="profile-dropdown-list" id="pdl">
+    //                 <li class="profile-dropdown-list-item">
+    //                     <a href="reset.html">Reset Password</a>
+    //                 </li>
+    //                 <li class="profile-dropdown-list-item">
+    //                     <a href="" class="logout" onclick='confirmLogout(this)'>Log out</a>
+    //                 </li>
+    //             </ul>
+    //         </div>`;
+    // }
 
-    const profileDropdownList = document.querySelector("#pdl");
-    const dropdownBtn = document.querySelector(".profile-dropdown-btn");
+    // const profileDropdownList = document.querySelector("#pdl");
+    // const dropdownBtn = document.querySelector(".profile-dropdown-btn");
 
-    const toggle = () => profileDropdownList.classList.toggle("active");
+    // const toggle = () => profileDropdownList.classList.toggle("active");
 
-    window.addEventListener("click", function (e) {
-        if (!dropdownBtn.contains(e.target)) {
-            profileDropdownList.classList.remove("active");
-        }
-    });
+    // window.addEventListener("click", function (e) {
+    //     if (!dropdownBtn.contains(e.target)) {
+    //         profileDropdownList.classList.remove("active");
+    //     }
+    // });
 
-    if ("<?php echo addslashes($message); ?>" !== "") {
-        const msg="<?php echo addslashes($message); ?>";
-        if(msg=="You are now registered, Please Login"){
-            alert("User Added");
-        }
-		else{
-            alert("<?php echo addslashes($message); ?>");
-		}
-	}
+    // if ("<?php echo addslashes($message); ?>" !== "") {
+    //     const msg="<?php echo addslashes($message); ?>";
+    //     if(msg=="You are now registered, Please Login"){
+    //         alert("User Added");
+    //     }
+	// 	else{
+    //         alert("<?php echo addslashes($message); ?>");
+	// 	}
+	// }
 
     function confirmLogout(a) {
         const val=confirm('Are you sure you want to log out?');
         if(val){
-            a.href="../index.php?logout=1";
+            window.location.href = "../index.php?logout=1";
         }
     }
 </script>

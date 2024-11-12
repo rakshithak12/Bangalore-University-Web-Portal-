@@ -1,3 +1,20 @@
+<?php
+session_start();
+if(isset($_SESSION['login']) && $_SESSION["login"] === true) {
+    $name = $_SESSION['username'];
+    $photo = $_SESSION['image_path'];
+    $path = !empty($photo) && file_exists("login-register/uploads/{$photo}") ? "login-register/uploads/{$photo}" : 'login-register/uploads/default.jpeg';
+    $_SESSION['path'] = $path;
+} else {
+    $_SESSION["login"] = false;
+}
+
+if (isset($_GET["logout"])) {
+    session_destroy();
+    header("Location: index.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,16 +22,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/headfoot.css">
     <link rel="icon" href="assets/kn_seal.png" type="image/x-icon">
+    <script>
+        function loadPage(page) {
+            const contentDiv = document.getElementById('content');
+            fetch(page + '.php')
+                .then(response => {
+                    if (!response.ok) throw new Error('Page not found');
+                    return response.text();
+                })
+                .then(html => {
+                    contentDiv.innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Error loading page:', error);
+                    window.location.href = 'login.php';
+                });
+        }
+    </script>
 </head>
-<style>
-    .head{
-        display: flex;
-        justify-content: flex-end;
-    }
-    .head button{
-        margin-right: 50px;
-    }
-</style>
 <body>
 <header>
     <span id="main">
@@ -27,6 +52,7 @@
         <button onclick="loadPage('join')" >Join</button>
         <button onclick="loadPage('courses')" >Courses</button>
         <button onclick="loadPage('contact')" >Contact</button>
+        <button onclick="loadPage('results')" >My Results</button>
         <button onclick="window.location.href='login.php'" class="login">Login</button>
     </div>
 </header>
@@ -35,6 +61,52 @@
     include('Home.php');
     ?>
 </div>
+<script>
+    if (<?php echo $_SESSION["login"] ? 'true' : 'false'; ?>) {
+        const path = "<?php echo $path; ?>";
+        const btn = document.querySelector(".login");
+        btn.style.display = "none";
+
+        const log = document.querySelector('.head');
+        log.innerHTML += `
+            <div class="profile-dropdown" id="bt">
+                <div class="profile-dropdown-btn">
+                    <div class="profile-img">
+                        <img onclick="toggle()" src="${path}" style="cursor:pointer; object-fit:cover;">
+                    </div>
+                </div>
+                <ul class="profile-dropdown-list" id="pdl">
+                    <li class="profile-dropdown-list-item">
+                        <a onclick="loadPage('profile')" style="cursor:pointer;">Profile</a>
+                    </li>
+                    <li class="profile-dropdown-list-item">
+                        <a href="reset.html">Reset Password</a>
+                    </li>
+                    <li class="profile-dropdown-list-item">
+                        <a href="" class="logout" onclick='confirmLogout(this)'>Log out</a>
+                    </li>
+                </ul>
+            </div>`;
+    }
+
+    const profileDropdownList = document.querySelector("#pdl");
+    const dropdownBtn = document.querySelector(".profile-dropdown-btn");
+
+    const toggle = () => profileDropdownList.classList.toggle("active");
+
+    window.addEventListener("click", function (e) {
+        if (!dropdownBtn.contains(e.target)) {
+            profileDropdownList.classList.remove("active");
+        }
+    });
+
+    function confirmLogout(a) {
+        const val=confirm('Are you sure you want to log out?');
+        if(val){
+            a.href="index.php?logout=1";
+        }
+    }
+</script>
 <footer>
     <div class="foot">
         <div class="name">
