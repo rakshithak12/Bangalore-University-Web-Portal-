@@ -1,6 +1,6 @@
 <?php
 session_start();
-$username=$_SESSION['username'];
+$username=$_POST['user_id']??$_SESSION['username'];
 include("login-register\database\db.php");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
@@ -63,7 +63,9 @@ $result = $conn->query($sql);
                     $conn->close();
                 ?>
             </div>
+            <button onclick="admin/adminhome.php">Back To home</button>
         </div>
+        
     </div>
     <br><br><br><br>
     <script>

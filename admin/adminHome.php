@@ -54,6 +54,7 @@ if (isset($_GET["logout"])) {
         <button onclick="loadPage('home')">Home</button>
         <!--<button onclick="loadPage('insert')">Add User</button>-->
         <button onclick="loadPage('cards')">Registered Users</button>
+        <button onclick="loadPage('results')">View Results</button>
         <button onclick="confirmLogout(this)" class="login">Logout</button>
     </div>
 </header>

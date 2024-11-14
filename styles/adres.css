@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+    font-family: 'Montserrat';
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+table {
+    border-collapse:collapse;
+    width: 97%;
+}
+th, td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+}   
+img{
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+}
+.buttons{
+    display: flex;
+    gap: 20px;
+    justify-content: space-around;
+    border-left: none;
+    border-top: none;
+    width: 100.4%;
+}
+
+#edit{
+    background-color: #8F1717;
+    color:white;
+    border: none;
+    padding:10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#delete{
+    background-color: green;
+    color:white;
+    border: none;
+    padding:10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.cards{
+    display:flex;
+    justify-content: center;
+    margin-top: 100px;
+}
+.card:first-child{
+    margin-top: -100px;
+}
+.card{
+    display:flex;
+    justify-content: center;
+}
+hr{
+    width: 97%;
+}
+.card1{
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 40px;
+    width: 90%;
+    height: max-content;
+    border-top: 10px solid #8F1717;
+    box-shadow: 0px 10px 20px 2px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 8px;
+}
