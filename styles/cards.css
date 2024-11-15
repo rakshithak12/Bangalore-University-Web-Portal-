@@ -75,3 +75,35 @@ hr{
     padding: 20px;
     border-radius: 8px;
 }
+
+#btns{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: -10px;
+    margin-right: 20px;
+}
+.edit{
+    border:none;
+    padding: 12px;
+    width: 100px;
+    color: white;
+    font-size: 20px;
+    border-radius: 50px;
+    background: brown;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+}
+.back{
+    border:none;
+    padding: 12px;
+    width: 100px;
+    color: white;
+    font-size: 20px;
+    border-radius: 50px;
+    background: red;
+    font-weight: bold;
+    letter-spacing: 2px;
+    cursor: pointer;
+}

@@ -1,6 +1,7 @@
 <?php
 session_start();
-$message = isset($_SESSION['message']) ? $_SESSION['message'] : '';
+$message = $_SESSION['message'] ?? "";
+$site = $_GET['value'] ?? "home.php";
 unset($_SESSION["message"]);
 
 if(isset($_SESSION['login']) && $_SESSION["login"] === true) {
@@ -54,64 +55,16 @@ if (isset($_GET["logout"])) {
         <button onclick="loadPage('home')">Home</button>
         <!--<button onclick="loadPage('insert')">Add User</button>-->
         <button onclick="loadPage('cards')">Registered Users</button>
-        <button onclick="loadPage('results')">View Results</button>
+        <button onclick="loadPage('resultview')">View Results</button>
         <button onclick="confirmLogout(this)" class="login">Logout</button>
     </div>
 </header>
 <div id="content">
     <?php
-    include('home.php');
+    include("$site");
     ?>
 </div>
 <script>
-    // if (<?php echo $_SESSION["login"] ? 'true' : 'false'; ?>) {
-    //     const path = "<?php echo $path; ?>";
-        // const btn = document.querySelector(".login");
-        // btn.style.display = "none";
-
-    //     const log = document.querySelector('.head');
-    //     log.innerHTML += `
-    //         <div class="profile-dropdown" id="bt">
-    //             <div class="profile-dropdown-btn" onclick="toggle()">
-    //                 <div class="profile-img">
-    //                     <img src="${path}" style="cursor:pointer;">
-    //                 </div>
-    //                 <div class="second" style="cursor:pointer;">
-    //                     <h4>Admin</h4>
-    //                 </div>
-    //             </div>
-    //             <ul class="profile-dropdown-list" id="pdl">
-    //                 <li class="profile-dropdown-list-item">
-    //                     <a href="reset.html">Reset Password</a>
-    //                 </li>
-    //                 <li class="profile-dropdown-list-item">
-    //                     <a href="" class="logout" onclick='confirmLogout(this)'>Log out</a>
-    //                 </li>
-    //             </ul>
-    //         </div>`;
-    // }
-
-    // const profileDropdownList = document.querySelector("#pdl");
-    // const dropdownBtn = document.querySelector(".profile-dropdown-btn");
-
-    // const toggle = () => profileDropdownList.classList.toggle("active");
-
-    // window.addEventListener("click", function (e) {
-    //     if (!dropdownBtn.contains(e.target)) {
-    //         profileDropdownList.classList.remove("active");
-    //     }
-    // });
-
-    // if ("<?php echo addslashes($message); ?>" !== "") {
-    //     const msg="<?php echo addslashes($message); ?>";
-    //     if(msg=="You are now registered, Please Login"){
-    //         alert("User Added");
-    //     }
-	// 	else{
-    //         alert("<?php echo addslashes($message); ?>");
-	// 	}
-	// }
-
     function confirmLogout(a) {
         const val=confirm('Are you sure you want to log out?');
         if(val){

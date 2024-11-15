@@ -12,8 +12,8 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../styles/cards.css">
-    <title>Users</title>
+    <link rel="stylesheet" href="../styles/adres.css">
+    <title>Document</title>
 </head>
 <body>
     <div class="cards">
@@ -40,9 +40,9 @@ $result = $conn->query($sql);
                             echo "<td><center><img src='../login-register/uploads/".$row['photo']."' alt='profile_img' style='object-fit: cover;'></center></td>";
                             echo "<td class='buttons'>
                                 
-                                <form action='../login-register/delete.php' method='post'>
-                                    <input type='hidden' name='user_id' value='".$row['user_id']."'>
-                                    <button type='submit' id='delete' onclick='confirmDelete(this)' value='delete'>DELETE</button>
+                                <form action='results.php' method='post'>
+                                    <input type='hidden' name='username' value='".$row['username']."'>
+                                    <button type='submit' id='delete' value='delete'>View</button>
                                 </form>
                                 </td>";
                         }

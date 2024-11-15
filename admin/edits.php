@@ -1,13 +1,9 @@
 <?php
-session_start();
-$username=$_POST['username'];
-include("..\login-register\database\db.php");
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-$sql = "SELECT * FROM $username";
-$result = $conn->query($sql);
+    session_start();
+    include("../login-register/database/db.php");
+    $username=$_POST['username'];
+    $sql = "SELECT * FROM $username";
+    $result = $conn->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,6 +13,18 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="../styles/cards.css">
     <title>Results - Bangalore University</title>
     <style>
+        table{
+            margin-top: 40px;
+        }
+        input{
+            width: 100%;
+        }
+        .val input{
+            width: 50%;
+        }
+        .val{
+            width:60px
+        }
         #btns{
             display: flex;
             justify-content: center;
@@ -27,7 +35,7 @@ $result = $conn->query($sql);
         .edit{
             border:none;
             padding: 12px;
-            width: 100px;
+            width: 100%;
             color: white;
             font-size: 20px;
             border-radius: 50px;
@@ -54,11 +62,8 @@ $result = $conn->query($sql);
     <div class="cards">
         <div class="card1">
             <div class="s1 card">
-                <h1>RESULTS</h1>
+                <h1>EDIT</h1>
             </div>
-            <center>
-                <hr>
-            </center>
             <div class="r2 card">
                 <?php
                     if ($result->num_rows > 0) {
@@ -79,15 +84,18 @@ $result = $conn->query($sql);
                         while ($row = $result->fetch_assoc()) {
                             echo "<tr class='row-" . $row['sno'] . "'>";
                             echo "<td>" . $row['sno'] . "</td>";
-                            echo "<td>" . $row['subject'] . "</td>";
-                            echo "<td>" . $row['max'] . "</td>";
-                            echo "<td>" . $row['min'] . "</td>";
-                            echo "<td>" . $row['scored'] . "</td>";
-                            echo "<td>" . $row['internal'] . "</td>";
-                            echo "<td>" . $row['total'] . "</td>";
-                            echo "<td>" . $row['status'] . "</td>";
-                            echo "<td>" . $row['credits'] . "</td>";
-                            echo "<td>" . $row['grade'] . "</td>";
+                            echo "<td><input type='text' name='subject[]' value='" . $row['subject'] . "' required></td>";
+                            echo "<td><input type='number' name='max[]' class='val' value='" . $row['max'] . "' required></td>";
+                            echo "<td><input type='number' name='min[]' class='val' value='" . $row['min'] . "' required></td>";
+                            echo "<td><input type='number' name='scored[]' class='val' value='" . $row['scored'] . "' required></td>";
+                            echo "<td><input type='number' name='internal[]' class='val' value='" . $row['internal'] . "' required></td>";
+                            echo "<td><input type='number' name='total[]' class='val' value='" . $row['total'] . "' required></td>";
+                            echo "<td><select name='status[]' required>
+                                    <option value='Pass' " . ($row['status'] == 'Pass' ? 'selected' : '') . ">Pass</option>
+                                    <option value='Fail' " . ($row['status'] == 'Fail' ? 'selected' : '') . ">Fail</option>
+                                </select></td>";
+                            echo "<td><input type='number' name='credits[]' class='val' value='" . $row['credits'] . "' required></td>";
+                            echo "<td><input type='text' name='grade[]' class='val' value='" . $row['grade'] . "' required></td>";
                             echo "</tr>";
                         }
                         echo "</table><br>";
@@ -98,8 +106,8 @@ $result = $conn->query($sql);
                 ?>
             </div>
             <div id="btns">
-                <form action="edits.php" method="post">
-                    <button class="edit" name="username" type="submit" value="<?php echo $username ?>">Edit</button>
+                <form action="edit.php" method="post">
+                    <button class="edit" name="username" type="submit" value="<?php echo $username ?>">Update</button>
                 </form>
                 <button class="back" onclick="window.location.href='adminhome.php?value=resultview.php'" >Back</button>
             </div>

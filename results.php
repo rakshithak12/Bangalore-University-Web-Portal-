@@ -1,7 +1,7 @@
 <?php
 session_start();
-$username=$_POST['user_id']??$_SESSION['username'];
-include("login-register\database\db.php");
+$username=$_SESSION['username'];
+include"login-register\database\db.php";
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
