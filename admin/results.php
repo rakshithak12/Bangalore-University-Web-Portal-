@@ -1,6 +1,8 @@
 <?php
-session_start();
-$username=$_POST['username'];
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+$username=$_GET['username']??$_POST['username'];
 include("..\login-register\database\db.php");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

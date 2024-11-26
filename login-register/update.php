@@ -1,37 +1,78 @@
 <?php
-    session_start();
-    include("../login-register/database/db.php");
-    $id = $_SESSION['user_id'];
-    $currentPhoto=$_SESSION['img_id'];
-    $email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
-    $username =  filter_input(INPUT_POST, "username", FILTER_SANITIZE_SPECIAL_CHARS);
-    $phone = $_POST['phone'];
-    function generateUniqueId() {
-        return 'ID-' . time() . '-' . rand(1000, 9999);
-    }
-    if (isset($_FILES['photo']) && $_FILES['photo']['error'] === UPLOAD_ERR_OK) {
-        $fileTmpPath = $_FILES['photo']['tmp_name'];
-        $fileName =$_FILES['photo']['name'];
-        $fileSize = $_FILES['photo']['size'];
-        $fileType = $_FILES['photo']['type'];
-        $base=generateUniqueId() .'_'. basename($fileName);
-        
-        $uploadFileDir = './uploads/';
-        $dest_path = $uploadFileDir . $base;
-        move_uploaded_file($fileTmpPath, $dest_path);
-        if ($currentPhoto !== 'default.jpeg') {
-            $oldPhotoPath = './uploads/' . $currentPhoto;
-            if (file_exists($oldPhotoPath)) {
-                unlink($oldPhotoPath); // Delete old photo
-            }
+session_start();
+include("../login-register/database/db.php");
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Retrieve the username from the form (passed as a hidden value)
+    $username = $_POST['username'];
+
+    // Loop through the submitted data arrays and update the respective records
+    $subjects = $_POST['subject'];
+    $max = $_POST['max'];
+    $min = $_POST['min'];
+    $scored = $_POST['scored'];
+    $internal = $_POST['internal'];
+    $total = $_POST['total'];
+    $status = $_POST['status'];
+    $credits = $_POST['credits'];
+    $grade = $_POST['grade'];
+
+    $update_success = true; // Track overall success
+
+    // Loop through each record to update
+    for ($i = 0; $i < count($subjects); $i++) {
+        // Prepare the SQL query to update the record
+        $sql = "UPDATE `$username` SET 
+                subject = ?, 
+                max = ?, 
+                min = ?, 
+                scored = ?, 
+                internal = ?, 
+                total = ?, 
+                status = ?, 
+                credits = ?, 
+                grade = ? 
+                WHERE sno = ?";
+
+        // Prepare the statement
+        $stmt = $conn->prepare($sql);
+        $sno = $i + 1;
+        // Bind parameters to the prepared statement
+        $stmt->bind_param("siiiiisiii", 
+            $subjects[$i], 
+            $max[$i], 
+            $min[$i], 
+            $scored[$i], 
+            $internal[$i], 
+            $total[$i], 
+            $status[$i], 
+            $credits[$i], 
+            $grade[$i],
+            $sno
+        );
+
+        // Execute the query
+        if (!$stmt->execute()) {
+            // If there is an error during the update, set the success flag to false
+            $_SESSION['error_message'] = "Error updating record for S.No " . ($i + 1) . ": " . $conn->error;
+            $update_success = false;
+            break; // Exit the loop if one update fails
         }
-        $query = "UPDATE users SET email='$email' ,username='$username' ,phone='$phone' ,photo='$base'  WHERE user_id=$id";
+
+        // Close the statement
+        $stmt->close();
     }
-    else{
-        $query = "UPDATE users SET email='$email' ,username='$username' ,phone='$phone'  WHERE user_id=$id";    
+
+    // Close the connection
+    $conn->close();
+
+    // Set a success message if all updates are successful
+    if ($update_success) {
+        $_SESSION['success_message'] = "Records updated successfully!";
     }
-    mysqli_query($conn, $query);
-    $_SESSION['message'] = "User Details Updated successfully";
-    header("Location: ../admin/adminHome.php");
+
+    // Redirect back to the results page with a success or error message
+    header("Location: ../admin/results.php?username=$username");
     exit();
+}
 ?>

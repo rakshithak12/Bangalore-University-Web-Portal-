@@ -15,6 +15,7 @@
     <style>
         table{
             margin-top: 40px;
+            width: 125%;
         }
         input{
             width: 100%;
@@ -29,7 +30,7 @@
             display: flex;
             justify-content: center;
             gap: 10px;
-            margin-top: -10px;
+            margin-top: -5px;
             margin-right: 20px;
         }
         .edit{
@@ -56,6 +57,11 @@
             letter-spacing: 2px;
             cursor: pointer;
         }
+        form{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
     </style>
 </head>
 <body>
@@ -65,51 +71,51 @@
                 <h1>EDIT</h1>
             </div>
             <div class="r2 card">
-                <?php
-                    if ($result->num_rows > 0) {
-                        echo "<table border='1'>";
-                        echo "<tr>
-                                <th>S.No</th>
-                                <th>Subject</th>
-                                <th>Max</th>
-                                <th>Min</th>
-                                <th>Scored</th>
-                                <th>Internal</th>
-                                <th>Total</th>
-                                <th>Status</th>
-                                <th>Credits</th>
-                                <th>Grade</th>
-                            </tr>";
-                        
-                        while ($row = $result->fetch_assoc()) {
-                            echo "<tr class='row-" . $row['sno'] . "'>";
-                            echo "<td>" . $row['sno'] . "</td>";
-                            echo "<td><input type='text' name='subject[]' value='" . $row['subject'] . "' required></td>";
-                            echo "<td><input type='number' name='max[]' class='val' value='" . $row['max'] . "' required></td>";
-                            echo "<td><input type='number' name='min[]' class='val' value='" . $row['min'] . "' required></td>";
-                            echo "<td><input type='number' name='scored[]' class='val' value='" . $row['scored'] . "' required></td>";
-                            echo "<td><input type='number' name='internal[]' class='val' value='" . $row['internal'] . "' required></td>";
-                            echo "<td><input type='number' name='total[]' class='val' value='" . $row['total'] . "' required></td>";
-                            echo "<td><select name='status[]' required>
-                                    <option value='Pass' " . ($row['status'] == 'Pass' ? 'selected' : '') . ">Pass</option>
-                                    <option value='Fail' " . ($row['status'] == 'Fail' ? 'selected' : '') . ">Fail</option>
-                                </select></td>";
-                            echo "<td><input type='number' name='credits[]' class='val' value='" . $row['credits'] . "' required></td>";
-                            echo "<td><input type='text' name='grade[]' class='val' value='" . $row['grade'] . "' required></td>";
-                            echo "</tr>";
+                <form action="../login-register/update.php" method="post">
+                    <?php
+                        if ($result->num_rows > 0) {
+                            echo "<table border='1'>";
+                            echo "<tr>
+                                    <th>S.No</th>
+                                    <th>Subject</th>
+                                    <th>Max</th>
+                                    <th>Min</th>
+                                    <th>Scored</th>
+                                    <th>Internal</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Credits</th>
+                                    <th>Grade</th>
+                                </tr>";
+                            
+                            while ($row = $result->fetch_assoc()) {
+                                echo "<tr class='row-" . $row['sno'] . "'>";
+                                echo "<td>" . $row['sno'] . "</td>";
+                                echo "<td><input type='text' name='subject[]' value='" . $row['subject'] . "' required></td>";
+                                echo "<td><input type='number' name='max[]' class='val' value='" . $row['max'] . "' required></td>";
+                                echo "<td><input type='number' name='min[]' class='val' value='" . $row['min'] . "' required></td>";
+                                echo "<td><input type='number' name='scored[]' class='val' value='" . $row['scored'] . "' required></td>";
+                                echo "<td><input type='number' name='internal[]' class='val' value='" . $row['internal'] . "' required></td>";
+                                echo "<td><input type='number' name='total[]' class='val' value='" . $row['total'] . "' required></td>";
+                                echo "<td><select name='status[]' required>
+                                        <option value='Pass' " . ($row['status'] == 'Pass' ? 'selected' : '') . ">Pass</option>
+                                        <option value='Fail' " . ($row['status'] == 'Fail' ? 'selected' : '') . ">Fail</option>
+                                    </select></td>";
+                                echo "<td><input type='number' name='credits[]' class='val' value='" . $row['credits'] . "' required></td>";
+                                echo "<td><input type='text' name='grade[]' class='val' value='" . $row['grade'] . "' required></td>";
+                                echo "</tr>";
+                            }
+                            echo "</table><br>";
+                        } else {
+                            echo "0 results";
                         }
-                        echo "</table><br>";
-                    } else {
-                        echo "0 results";
-                    }
-                    $conn->close();
-                ?>
-            </div>
-            <div id="btns">
-                <form action="edit.php" method="post">
-                    <button class="edit" name="username" type="submit" value="<?php echo $username ?>">Update</button>
+                        $conn->close();
+                    ?>
+                    <div id="btns">
+                        <button class="edit" name="username" type="submit" value="<?php echo $username ?>">Update</button>
+                        <button class="back" type="button" onclick="window.location.href='adminhome.php?value=results.php&username=<?php echo $username?>'" >Back</button>
+                    </div>
                 </form>
-                <button class="back" onclick="window.location.href='adminhome.php?value=resultview.php'" >Back</button>
             </div>
         </div>
     </div>
