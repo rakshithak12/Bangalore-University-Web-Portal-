@@ -19,7 +19,7 @@ $result = $conn->query($sql);
     <div class="cards">
         <div class="card1">
             <div class="s1 card">
-                <h1>View Results</h1>
+                <!-- <h1>View Results</h1> -->
             </div>
             <center>
                 <hr>
