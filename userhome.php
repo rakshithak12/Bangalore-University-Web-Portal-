@@ -80,7 +80,7 @@ if (isset($_GET["logout"])) {
                         <a onclick="loadPage('profile')" style="cursor:pointer;">Profile</a>
                     </li>
                     <li class="profile-dropdown-list-item">
-                        <a href="reset.html">Reset Password</a>
+                        <a href="reset.php">Reset Password</a>
                     </li>
                     <li class="profile-dropdown-list-item">
                         <a href="" class="logout" onclick='confirmLogout(this)'>Log out</a>

@@ -18,6 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION["login"]=true;
                 $role = $row['role'];
                 if($role=="user"){
+                    $_SESSION["email"] = $email;
                     header("Location: ../userhome.php");
                     exit();
                 }

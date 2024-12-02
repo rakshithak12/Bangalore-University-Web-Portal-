@@ -43,15 +43,11 @@ body {
 h1 {
     color: #8F1717;
     margin-bottom: 20px;
-}
-
-.input-box {
-    width: 100%;
-    margin-bottom: 20px;
+    text-align: center;
 }
 
 .input-box input {
-    width: 100%;
+    width: 300px;
     padding: 12px 15px;
     border: 1px solid #8F1717;
     border-radius: 50px;

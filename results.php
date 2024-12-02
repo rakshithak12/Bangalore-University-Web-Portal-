@@ -63,7 +63,7 @@ $result = $conn->query($sql);
                     $conn->close();
                 ?>
             </div>
-            <button onclick="admin/adminhome.php">Back To home</button>
+            <center><button onclick="window.location.href='userhome.php'" id="b2h">Back To home</button></center>
         </div>
         
     </div>

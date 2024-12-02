@@ -1,3 +1,6 @@
+<?php 
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,13 +15,13 @@
 		<form action="login-register/forgot.php" method="POST">
 			<h1>Reset Password</h1>
 			<div class="input-box">
-				<input type="email" name="email" placeholder="Email" required>
+				<input type="password" name="password1" placeholder="Old Password" required>
 			</div>
 			<div class="input-box">
-				<input type="password" name="password" placeholder="Password" required>
+				<input type="password" name="password2" placeholder="New Password" required>
 			</div>
-			<p><a href="login.php" id="signIn">Sign in</a></p>
 			<button type="submit" class="btn">Update</button>
+			<p><a href="userhome.php" id="signIn" style="font-size: 15px; text-decoration: underline;">Back</a></p>
 		</form>
   	</div>
 </body>

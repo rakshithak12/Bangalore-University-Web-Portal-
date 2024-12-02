@@ -47,6 +47,17 @@ img{
     border-radius: 5px;
     cursor: pointer;
 }
+#b2h{
+    width: 130px;
+    border-radius: 50px;
+    border: none;
+    padding: 10px;
+    background: red;
+    color: white;
+    font-size:15px;
+    font-weight: bold;
+    cursor: pointer;
+}
 .cards{
     display:flex;
     justify-content: center;
