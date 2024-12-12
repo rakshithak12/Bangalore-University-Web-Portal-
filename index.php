@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/headfoot.css">
     <link rel="icon" href="assets/kn_seal.png" type="image/x-icon">
+    <script>
+        function loadPage(page) {
+            const contentDiv = document.getElementById('content');
+            fetch(page + '.php')
+                .then(response => {
+                    if (!response.ok) throw new Error('Page not found');
+                    return response.text();
+                })
+                .then(html => {
+                    contentDiv.innerHTML = html;
+                })
+                .catch(error => {
+                    console.error('Error loading page:', error);
+                    window.location.href = 'login.php';
+                });
+        }
+    </script>
 </head>
 <style>
     .head{

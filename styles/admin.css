@@ -67,6 +67,7 @@ header{
     width: 40px;
     height: 35px;
     margin-top: 5px;
+    border-radius: 0px;
 }
 
 .mode{
