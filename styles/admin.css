@@ -70,6 +70,10 @@ header{
     border-radius: 0px;
 }
 
+.hidden{
+    display: none;
+}
+
 .mode{
     margin-top: -1px;
     width: 20px;

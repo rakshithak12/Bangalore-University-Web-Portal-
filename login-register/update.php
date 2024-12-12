@@ -35,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 WHERE sno = ?";
 
         // Prepare the statement
-        $stmt = $conn->prepare($sql);
+        $stmt = $conn2->prepare($sql);
         $sno = $i + 1;
         // Bind parameters to the prepared statement
         $stmt->bind_param("siiiiisiii", 
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Execute the query
         if (!$stmt->execute()) {
             // If there is an error during the update, set the success flag to false
-            $_SESSION['error_message'] = "Error updating record for S.No " . ($i + 1) . ": " . $conn->error;
+            $_SESSION['error_message'] = "Error updating record for S.No " . ($i + 1) . ": " . $conn2->error;
             $update_success = false;
             break; // Exit the loop if one update fails
         }
@@ -64,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 
     // Close the connection
-    $conn->close();
+    $conn2->close();
 
     // Set a success message if all updates are successful
     if ($update_success) {

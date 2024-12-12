@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_SPECIAL_CHARS);
 
         $sql = "SELECT * FROM users WHERE email='$email'";
-        $result = mysqli_query($conn, $sql);
+        $result = mysqli_query($conn1, $sql);
 
         if (mysqli_num_rows($result) > 0) {
             $row = mysqli_fetch_assoc($result);
@@ -44,5 +44,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-mysqli_close($conn);
+mysqli_close($conn1);
 ?>

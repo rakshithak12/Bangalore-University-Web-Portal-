@@ -12,7 +12,7 @@
 <body>
     <div class="wrap"></div>
     <div class="wrapper" id="sec">
-		<form action="login-register/forgot.php" method="POST">
+		<form action="login-register/forgot_pass.php" method="POST">
 			<h1>Reset Password</h1>
 			<div class="input-box">
 				<input type="password" name="password1" placeholder="Old Password" required>

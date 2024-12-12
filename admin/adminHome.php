@@ -4,18 +4,15 @@ $message = $_SESSION['message'] ?? "";
 $site = $_GET['value'] ?? "home.php";
 unset($_SESSION["message"]);
 
-if(isset($_SESSION['login']) && $_SESSION["login"] === true) {
-    $name = $_SESSION['username'];
-    $photo = $_SESSION['image_path'];
-    $path = !empty($photo) && file_exists("../login-register/uploads/{$photo}") ? "../login-register/uploads/{$photo}" : '../login-register/uploads/default.jpeg';
-    $_SESSION['path'] = $path;
-} else {
-    $_SESSION["login"] = false;
+if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
+    header("Location: ../login.php");
+    exit();
 }
 
 if (isset($_GET["logout"])) {
+    session_unset();
     session_destroy();
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
 ?>
@@ -56,21 +53,16 @@ if (isset($_GET["logout"])) {
         <!--<button onclick="loadPage('insert')">Add User</button>-->
         <button onclick="loadPage('cards')">Registered Users</button>
         <button onclick="loadPage('resultview')">View Results</button>
-        <button onclick="confirmLogout(this)" class="login">Logout</button>
+        <form action="adminHome.php?logout=1" method="POST" onsubmit="return confirm('Are you sure you want to log out?');">
+            <button type="submit" class="login">Logout</button>
+        </form>
+
     </div>
 </header>
 <div id="content">
     <?php
-    include("$site");
+    include $site;
     ?>
 </div>
-<script>
-    function confirmLogout(a) {
-        const val=confirm('Are you sure you want to log out?');
-        if(val){
-            window.location.href = "../index.php?logout=1";
-        }
-    }
-</script>
 </body>
 </html>

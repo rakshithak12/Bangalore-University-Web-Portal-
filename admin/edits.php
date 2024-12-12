@@ -3,7 +3,7 @@
     include("../login-register/database/db.php");
     $username=$_POST['username'];
     $sql = "SELECT * FROM $username";
-    $result = $conn->query($sql);
+    $result = $conn2->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -109,7 +109,7 @@
                         } else {
                             echo "0 results";
                         }
-                        $conn->close();
+                        $conn2->close();
                     ?>
                     <div id="btns">
                         <button class="edit" name="username" type="submit" value="<?php echo $username ?>">Update</button>

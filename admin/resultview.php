@@ -1,11 +1,11 @@
 <?php
 include("..\login-register\database\db.php");
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($conn1->connect_error) {
+    die("Connection failed: " . $conn1->connect_error);
 }
 
 $sql = "SELECT * FROM users where role='user'";
-$result = $conn->query($sql);
+$result = $conn1->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +19,7 @@ $result = $conn->query($sql);
     <div class="cards">
         <div class="card1">
             <div class="s1 card">
-                <!-- <h1>View Results</h1> -->
+                <h1>View Results</h1>
             </div>
             <center>
                 <hr>
@@ -50,7 +50,7 @@ $result = $conn->query($sql);
                     } else {
                         echo "0 results";
                     }
-                    $conn->close();
+                    $conn1->close();
                 ?>
             </div>
         </div>

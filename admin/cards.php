@@ -1,11 +1,11 @@
 <?php
 include("..\login-register\database\db.php");
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+if ($conn1->connect_error) {
+    die("Connection failed: " . $conn1->connect_error);
 }
 
 $sql = "SELECT * FROM users where role='user'";
-$result = $conn->query($sql);
+$result = $conn1->query($sql);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,6 +41,7 @@ $result = $conn->query($sql);
                             echo "<td class='buttons'>
                                 
                                 <form action='../login-register/delete.php' method='post'>
+                                    <input type='hidden' name='username' value='".$row['username']."'>
                                     <input type='hidden' name='user_id' value='".$row['user_id']."'>
                                     <button type='submit' id='delete' onclick='confirmDelete(this)' value='delete'>DELETE</button>
                                 </form>
@@ -50,7 +51,7 @@ $result = $conn->query($sql);
                     } else {
                         echo "0 results";
                     }
-                    $conn->close();
+                    $conn1->close();
                 ?>
             </div>
         </div>
