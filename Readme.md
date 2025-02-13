@@ -8,16 +8,11 @@ A web-based portal designed to streamline the management of academic operations 
   - Student registration, profile management, and grade tracking.
   
 - **Course Management**  
-  - Professors can add, update, and manage courses.
-  
-- **Faculty Management**  
-  - Faculty members can view their schedules and courses they teach.
+  - Professors can add, update, and manage results.
   
 - **Admin Dashboard**  
-  - Admins have full control to manage student and faculty data, assign courses, and generate reports.
+  - Admins have full control to manage student data, assign marks.
   
-- **Announcements & Notifications**  
-  - Display real-time updates, notifications, and announcements for students and faculty.
 
 ## Technologies Used
 
