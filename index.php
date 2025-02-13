@@ -1,3 +1,14 @@
+<!-- 
+Project Name: Bangalore University Web Portal
+Author: Gunal K
+Created on: October 2024
+License: MIT License
+Description: This is a university web portal for students to view academic records and access resources.
+
+Copyright © 2025 Gunal K. All Rights Reserved.
+Unauthorized copying, modification, or distribution of this code is strictly prohibited.
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -90,10 +101,3 @@
 </footer>
 </body>
 </html>
-
-"""
-Project Name: Bangalore University Web Portal
-Author: Gunal K
-License: MIT
-"""
-
