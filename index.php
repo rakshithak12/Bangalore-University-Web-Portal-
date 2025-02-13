@@ -90,3 +90,12 @@
 </footer>
 </body>
 </html>
+
+"""
+Project Name: Bangalore University Web Portal
+Author: Gunal K
+Created on: Feb 2025
+License: MIT
+Description: [Short Description of Project]
+"""
+
